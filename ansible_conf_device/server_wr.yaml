@@ -1,0 +1,13 @@
+- name: Сохранение текущей конфигурации на IOS_Server устройствах
+  hosts: servers
+  gather_facts: no
+  tasks:
+    - name: Сохранить текущую конфигурацию
+      cisco.ios.ios_command:
+        commands:
+          - wr
+      register: save_result
+
+    - name: Вывести результат сохранения
+      debug:
+        var: save_result

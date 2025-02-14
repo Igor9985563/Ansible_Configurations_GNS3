@@ -1,0 +1,24 @@
+- name: Настройка IP-адресов и описаний на интерфейсах для выбранного устройства
+  hosts: dev_R1
+  gather_facts: no
+  connection: network_cli
+  vars:
+    interfaces:
+      - name: Fa0/0
+        ip_add: 123.45.67.2
+        net_m: 255.255.255.252
+        desc: "Outside Network Interface"
+      - name: Fa0/1
+        ip_add: 10.0.0.1
+        net_m: 255.255.255.252
+        desc: "Inside Network Interface"
+  tasks:
+    - name: Настройка IP-адресов и описаний на интерфейсах
+      cisco.ios.ios_config:
+        lines:
+          - "interface {{ item.name }}"
+          - "ip address {{ item.ip_add }} {{ item.net_m }}"
+          - "description {{ item.desc }}"
+          - "no shutdown"
+      loop: "{{ interfaces }}"
+

@@ -1,0 +1,22 @@
+---  # Your device
+- name: Configure Cisco devices and run post-commands
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Configure interfaces
+      ios_config:
+        host: "{{ inventory_hostname }}"
+        username: "{{ ansible_user }}"
+        password: "{{ ansible_password }}"
+        lines:
+          - "interface {{ item.name }}"
+          - "ip address {{ item.ip_address }} {{ item.sub }}"
+          - "no shutdown"
+      with_items: "{{ hostvars[inventory_hostname]['interfaces'] }}"
+
+    - name: Run post-commands
+      ios_command:
+        host: "{{ inventory_hostname }}"
+        username: "{{ ansible_user }}"
+        password: "{{ ansible_password }}"
+        commands: "{{ hostvars[inventory_hostname]['post_commands'] }}"

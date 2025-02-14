@@ -1,0 +1,45 @@
+devices:    # Your device
+  - host: "192.168.10.1"
+    username: "admin"
+    password: "admin"
+    device_type: "cisco_ios"
+    eigrp:
+      - name: "10"
+    post_commands:
+      - "show ip route"
+
+  - host: "192.168.10.2"
+    username: "admin"
+    password: "admin"
+    device_type: "cisco_ios"
+    eigrp:
+      - name: "10"
+    post_commands:
+      - "show ip route"
+
+  - host: "192.168.10.3"
+    username: "admin"
+    password: "admin"
+    device_type: "cisco_ios"
+    eigrp:
+      - name: "10"
+    post_commands:
+      - "show ip route"
+
+  - host: "192.168.10.4"
+    username: "admin"
+    password: "admin"
+    device_type: "cisco_ios"
+    eigrp:
+      - name: "10"
+    post_commands:
+      - "show ip route"
+
+  - host: "192.168.10.5"
+    username: "admin"
+    password: "admin"
+    device_type: "cisco_ios"
+    eigrp:
+      - name: "10"
+    post_commands:
+      - "show ip route"

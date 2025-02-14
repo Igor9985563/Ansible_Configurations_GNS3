@@ -1,0 +1,35 @@
+devices:  # Your device
+  - host: "10.10.10.10"
+    username: "cisco"
+    password: "cisco"
+    device_type: "cisco_ios"
+    do_wr:
+      - "wr"
+
+  - host: "10.10.10.11"
+    username: "cisco"
+    password: "cisco"
+    device_type: "cisco_ios"
+    do_wr:
+      - "wr"
+
+  - host: "10.10.10.12"
+    username: "cisco"
+    password: "cisco"
+    device_type: "cisco_ios"
+    do_wr:
+      - "wr"
+
+  - host: "10.10.10.13"
+    username: "cisco"
+    password: "cisco"
+    device_type: "cisco_ios"
+    do_wr:
+      - "wr"
+
+  - host: "10.10.10.14"
+    username: "cisco"
+    password: "cisco"
+    device_type: "cisco_ios"
+    do_wr:
+      - "wr"

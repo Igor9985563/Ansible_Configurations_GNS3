@@ -1,0 +1,29 @@
+- name: Базовая настройка маршрутизатора Cisco IOS
+  hosts: ios
+  gather_facts: no
+  tasks:
+    - name: Установить доменное имя
+      cisco.ios.ios_config:
+        lines:
+          - no ip domain-lookup
+          - ip domain-name cisco.com
+
+    - name: Установить банер
+      cisco.ios.ios_config:
+        lines:
+          - banner motd "! ! ! WARNING ! ! !"
+
+    - name: Установить пароль на привилегированный режим
+      cisco.ios.ios_config:
+        lines:
+          - enable secret cisco
+
+    - name: Сохранить конфигурацию
+      cisco.ios.ios_command:
+        commands:
+          - wr
+      register: save_result
+
+    - name: Вывести результат сохранения
+      debug:
+        var: save_result

@@ -1,0 +1,25 @@
+- name: Настройка IP-адресов и описаний на интерфейсах для Серверов
+  hosts: dev_Ser_2
+  gather_facts: no
+  connection: network_cli
+  vars:
+    interfaces:
+      - name: Fa0/0
+        ip_add: 192.168.10.3
+        net_m: 255.255.255.0
+        desc: "Server Network Interface"
+      - name: lo8
+        ip_add: 8.8.8.8
+        net_m: 255.255.255.255
+        desc: "Server loopback Network Interface"
+
+  tasks:
+    - name: Настройка IP-адресов и описаний на интерфейсах Сервера
+      cisco.ios.ios_config:
+        lines:
+          - "interface {{ item.name }}"
+          - "ip address {{ item.ip_add }} {{ item.net_m }}"
+          - "description {{ item.desc }}"
+          - "no shutdown"
+      loop: "{{ interfaces }}"
+
